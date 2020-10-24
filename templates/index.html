@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+<!-- <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;1,900&display=swap" rel="stylesheet"> -->
+
+{% block title %}Habit{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% block page_content %}
+
+    {{ wtf.quick_form(form) }}
+
+    <!-- {% for habit in habitList%}
+    <p>{{habit.habit}} Total: {{habit.frequency}} Done: {{habit.done}}</p>
+    {% endfor%} -->
+
+    
+    <!-- <p>{{habitList[0].habit}} Total: {{habitList[0].frequency}} Done: {{habitList[0].done}}</p> -->
+
+    {% endblock %}
+    <div id="piechart" style="width:50%; height:300px; margin:0 auto;"></div>
+    
+{% endblock %}
+
+{%block scripts%}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src='../static/tracker.js'></script>
+<script src="https://code.jscharting.com/2.9.0/jscharting.js"></script>
+
+{% endblock%}
