@@ -2,6 +2,6 @@
     "python.autoComplete.extraPaths": [
     
     ],
-    "python.pythonPath": "backend\\venv\\Scripts\\python.exe",
+    "python.pythonPath": "scheduleApp\\venv\\Scripts\\python.exe",
     "python.analysis.extraPaths": []
 }

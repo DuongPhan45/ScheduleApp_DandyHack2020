@@ -1,0 +1,357 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Quicksand", sans-serif;
+}
+  
+html {
+  font-size: 62.5%;
+}
+
+html,
+body {
+  margin: 0; 
+  height: 100%; 
+  overflow: hidden;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sideBar {
+  height: 100%;
+  width: 50px;
+  position: fixed;
+  background-color: white;
+  top: 0;
+  left: 0;
+  padding-top: 2rem;
+  z-index: 1;
+  white-space: nowrap;
+  overflow-x: hidden;
+  transition: 0.5s;
+}
+
+.sideBar div {
+  padding: 8px 8px 8px 32px;
+  font-size: 25px;
+  color: black;
+  display: block;
+}
+
+.sideBar div:hover {
+  background-color: #818181;
+  color: black;
+  cursor: pointer;
+}
+
+.menuIcon,
+.sideBarText{
+  vertical-align: middle;
+  visibility: hidden;
+}
+
+.menuIcon{
+  font-size: 2.5rem;
+  visibility: visible;
+  padding-left: 2rem;
+  padding-bottom: 1rem;
+}
+  
+.calendar {
+  width: 0;
+  height: 0;
+  background-color: white;
+  border: 0.2rem solid #777;
+  margin-top: 20%;
+  visibility: hidden;
+}
+
+.month {
+  width: 100%;
+  height: 25%;
+  border-bottom: 0.2rem solid #777;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  text-align: center;
+}
+  
+.month i {
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+ 
+.month h1 {
+  font-size: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  margin-bottom: 1rem;
+}
+
+.month p {
+  font-size: 1.6rem;
+}
+  
+.weekdays {
+  width: 100%;
+  height: 10%;
+  padding: 0 0.4rem;
+  display: flex;
+  align-items: center;
+}
+  
+.weekdays div {
+  font-size: 1.5rem;
+  letter-spacing: 0.1rem;
+  width: calc(97% / 7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+  
+.days {
+  width: 100%;
+  height: 65%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.2rem;
+}
+  
+.days div {
+  font-size: 1.4rem;
+  /* margin: 0 3.5px; */
+  width: calc(97% / 7);
+  height: 3.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* transition: background-color 0.2s; */
+}
+  
+.days div:hover:not(.today) {
+  border: 0.2rem solid #777;
+  cursor: pointer;
+}
+  
+.prev-date,
+.next-date {
+  opacity: 0.5;
+}
+  
+.today{
+  border: 0.2rem solid #777;
+}
+
+.today:hover {
+  cursor: pointer;
+}
+
+.selected {
+    background-color: #777;
+}
+
+.reminder {
+    width: 0;
+    height: 0;
+    display: flex;
+    flex-wrap: wrap;
+    border: 0.2rem solid black; 
+    visibility: hidden;
+}
+
+.task {
+    flex-basis: 28%;
+    height: 30%;
+    border: 0.2rem solid black; 
+    margin: 5% 2%;
+}
+
+.task:hover {
+  background-color: rgb(189, 185, 185);
+  cursor: pointer;
+}
+
+.edit-reminder {
+  position: fixed;
+  margin-top: 26%;
+  margin-left: 34%;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 3.5rem;
+}
+
+.edit-reminder:hover {
+  cursor: pointer;
+  animation: rotate 0.5s;
+}
+
+@keyframes rotate {
+  100% {transform: rotate(180deg)}
+}
+
+.edit-card {
+  position: fixed;
+  top: 2rem;
+  left: 30rem;
+  z-index: 1;
+  width: 70rem;
+  height: 50rem;
+  background-color: #777;
+  visibility: hidden;
+}
+
+.week-calendar {
+  width: 0;
+  height: 0;
+  display: flex;
+  flex-wrap: wrap;
+  visibility: hidden;
+  font-size: 150%;
+}
+
+.edit-week-cal {
+  width: 0;
+  height: 0;
+  visibility: hidden;
+  padding: 15% 0; 
+}
+
+.edit-week-cal button {
+  width: 100%;
+  height: 20%;
+  margin: 10% 0;
+  border-radius: 10%;
+  background-color: white;
+  letter-spacing: 0.1rem;
+}
+
+.edit-week-cal button:hover {
+  background-color: lightgray;
+}
+
+.time-col {
+  width: 15%;
+  height: 87%;
+  margin-top: 7%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.weekdays-col {
+  width: calc(85%/7);
+  height: 97.5%;
+  display: flex;
+  flex-wrap: wrap;
+  border-left: 0.1rem solid #777;
+  border-bottom: 0.1rem solid #777;
+}
+
+.sunday {
+  border-right: 0.1rem solid #777;
+}
+
+.time-col div {
+  width: 100%;
+  height: 7%; 
+  text-align: center;
+  flex-basis: 100%;
+}
+
+.weekdays-col span {
+  letter-spacing: 0.1rem;
+  width: 100%;
+  height: 12%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 0.1rem solid #777;
+}
+
+.weekdays-col div {
+  width: 100%;
+  height: 0.5%;
+  border-bottom: 0.1rem solid #777;
+}
+
+.layout {
+  width: 40%;
+  height: 70%;
+  visibility: visible;
+  margin: auto;
+}
+
+.single-layout {
+  width: 40%;
+  height: 70%;
+  visibility: visible;
+  margin: auto;
+}
+
+.close-button {
+  width: 20px;
+  height: 20px;
+  position: fixed;
+  border-radius: 50%;
+  margin-left: 39%;
+  margin-top: -1%;
+  background-color: white;
+  text-align: center;
+  border: 0.1rem solid black;
+}
+
+.calendar.layout {
+  width: 30%;
+  height: 60%;
+}
+
+.calendar.layout .close-button {
+  margin-left: 29%;
+}
+
+.close-button:hover {
+  cursor: pointer;
+  background-color: lightgrey;
+}
+
+.calendar.single-layout {
+  height: 80%;
+}
+
+.week-calendar.single-layout {
+  height: 80%;
+  width: 60%;
+}
+
+.week-calendar.single-layout .time-col {
+  width: 15%;
+}
+
+.week-calendar.single-layout .weekdays-col {
+  width: 10%;
+}
+
+.week-calendar.single-layout .edit-week-cal{
+    width: 10%;
+    height: 100%;
+    visibility: visible;
+}
+
+
+.week-calendar.single-layout .time-col{
+  margin-top: 6%;
+}
+
+.week-calendar.single-layout .close-button {
+  margin-left: 56.5%;
+}
