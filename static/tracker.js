@@ -1,32 +1,32 @@
 // don't execute any JS until after the DOM is loaded
 
+ // pass the habitList variable
+ // This does not work inside the .ready()
+ function identity(list) {
+    return list;
+}
 $(document).ready(function () {
-    var demoList = [
-        { habit: "Drink Water", total: 7, done: 4 },
-        { habit: "Exercise", total: 5, done: 1 }
-    ]
-
+    console.log(habitList);
+  
     var allchart = document.createElement("div");
-    for (var i = 0; i < demoList.length; i++) {
+    for (var i = 0; i < habitList.length; i++) {
         var id = "chart" + i;
         // Create a new HTML element
         var newchart = document.createElement("div");
         newchart.setAttribute("id", id);
-        newchart.style = "width:100%; height:500px; margin:0 auto;";
-
-        // style="width:50%; height:300px; margin:0 auto
+        newchart.setAttribute("class", "donutChart");
+        newchart.style = "width:100%; height:500px";
         // Append the new element to the old div
         document.getElementById("piechart").appendChild(newchart);
     }
 
     // draw charts in the list
 
-    for (var i = 0; i < demoList.length; i++) {
-        var total = demoList[i]["total"];
-        var done = demoList[i]["done"];
-        var title = demoList[i]["habit"];
+    for (var i = 0; i < habitList.length; i++) {
+        var total = habitList[i]["frequency"];
+        var done = habitList[i]["done"];
+        var title = habitList[i]["habit"];
         var id = "chart" + i;
-        console.log("habit" + title);
         draw(id, title, total, done);
     }
 

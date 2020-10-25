@@ -1,11 +1,17 @@
 {% extends "base.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
 
+{%block head%}
+{{ super() }}
 <link rel="stylesheet" href={{ url_for('static', filename='tracker.css')}}>
+<link href="https://fonts.googleapis.com/css2?family=Chewy&family=Syne+Tactile&family=Viga&display=swap" rel="stylesheet">
+
+{%endblock%}
 
 {% block title %}Habit{% endblock %}
 
 {% block content %}
+<div class="heading">My Habit</div>
 <div class="container">
     {% block page_content %}
 
@@ -13,13 +19,13 @@
 
     {% endblock %}
     <div id="piechart" style="width:50%; height:300px; margin:0 auto;"></div>
-    
+</div>
 {% endblock %}
 
 {%block scripts%}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src={{ url_for('static', filename='tracker.js')}}></script>
-<script type="text/javascript"> var habitList = identity({{habitList|tojson}}) </script>
+<script type="text/javascript"> var habitList = identity({{ habitList| tojson}}) </script>
 <script src="https://code.jscharting.com/2.9.0/jscharting.js"></script>
 
 

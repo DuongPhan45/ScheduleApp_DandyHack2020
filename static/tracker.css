@@ -1,4 +1,9 @@
-.donutChart{
-    float: left;
-    padding: 0 px;
+.heading{
+    text-align: center;
+    font-size: 50px;
+    color: rgb(42, 157, 143);
+    font-family: 'Viga', sans-serif;
+}
+.chart{
+    font-family: 'Viga', sans-serif;
 }

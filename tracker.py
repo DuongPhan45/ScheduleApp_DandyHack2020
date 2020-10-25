@@ -22,9 +22,10 @@ db = SQLAlchemy(app)
 class HabitForm(FlaskForm):
     habit = StringField('Habit', validators=[DataRequired()])
     CHOICES = [1,2,3,4,5,6,7]
-    frequency = SelectField('Frequency', validators=[DataRequired()], choices=CHOICES)
+    frequency = SelectField('Frequency (For adding habit only)', validators=[DataRequired()], choices=CHOICES)
     done = IntegerField('Enter number of done', validators=[NumberRange(min=0, max=frequency, message="You entered a number out of range")])
     submit = SubmitField('Add/Update Habit')
+    delete = SubmitField("Delete Habit")
 
 class Habit(db.Model):
     habit = db.Column(db.String(100), primary_key=True)
@@ -45,19 +46,25 @@ class Habit(db.Model):
 @app.route('/', methods=['GET', 'POST'])
 def index():
     form = HabitForm()
-    if request.method=="POST":
 
+    if request.method=="POST":
+        # Add/update
         habit = form.habit.data
         frequency = form.frequency.data
         done = form.done.data
         
-        # Check if the habit is already in the db
-        found_habit = Habit.query.filter_by(habit=habit).first()
-        if found_habit is None:
-            newHabit = Habit(habit=habit, frequency=frequency, done=done)
-            db.session.add(newHabit)
-        else:
-            found_habit.done= done
+        if form.submit.data: # Add or update
+            # Check if the habit is already in the db
+            found_habit = Habit.query.filter_by(habit=habit).first()
+            if found_habit is None:
+                newHabit = Habit(habit=habit, frequency=frequency, done=done)
+                db.session.add(newHabit)
+            else:
+                found_habit.done= done
+        else: # Delete
+            found_dhabit = Habit.query.filter_by(habit=habit).all()
+            for h in found_dhabit:
+                db.session.delete(h)
                   
         db.session.commit()
 
@@ -68,8 +75,8 @@ def index():
     habitjson = []
     for habit in habitList:
         habitjson.append(habit.turnToDict())
-    print(habitjson)
-
+    
+    # Clear the form fields
     form.habit.data = ''
     
     return render_template('index.html', form=form, habitList=habitjson)
